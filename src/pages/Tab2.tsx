@@ -1,13 +1,16 @@
-import React from 'react';  
+import React, { useState } from 'react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab2.css';
 import { camera, trash, close } from 'ionicons/icons';
-import { usePhotoGallery } from '../hooks/usePhotoGallery';
+import { usePhotoGallery, Photo } from '../hooks/usePhotoGallery';
+// other imports
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
          IonFab, IonFabButton, IonIcon, IonGrid, IonRow,
          IonCol, IonImg, IonActionSheet } from '@ionic/react';
 
 
+const { photos, takePhoto, deletePhoto } = usePhotoGallery();
+const [photoToDelete, setPhotoToDelete] = useState<Photo>();
 const Tab2: React.FC = () => {
   const { photos, takePhoto } = usePhotoGallery();
   return (
@@ -23,15 +26,35 @@ const Tab2: React.FC = () => {
             <IonIcon icon={camera}></IonIcon>
           </IonFabButton>
         </IonFab>
-  <IonGrid>
-    <IonRow>
-      {photos.map((photo, index) => (
-        <IonCol size="6" key={index}>
-          <IonImg src={photo.webviewPath} />
-        </IonCol>
-      ))}
-    </IonRow>
-  </IonGrid>
+        <IonGrid>
+          <IonRow>
+            {photos.map((photo, index) => (
+              <IonCol size="6" key={index}>
+                <IonImg onClick={() => setPhotoToDelete(photo)} 
+                src={photo.webviewPath} />
+              </IonCol>
+            ))}
+          </IonRow>
+        </IonGrid>
+        <IonActionSheet
+          isOpen={!!photoToDelete}
+          buttons={[{
+            text: 'Delete',
+            role: 'destructive',
+            icon: trash,
+            handler: () => {
+              if (photoToDelete) {
+                deletePhoto(photoToDelete);
+                setPhotoToDelete(undefined);
+              }
+           }
+          }, {
+            text: 'Cancel',
+            icon: close,
+            role: 'cancel'
+          }]}
+          onDidDismiss={() => setPhotoToDelete(undefined)}
+        />
       </IonContent>
     </IonPage>
   );
