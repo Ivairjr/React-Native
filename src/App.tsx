@@ -29,7 +29,7 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
-import { images, square, triangle } from 'ionicons/icons';
+import { images, square, triangle, videocamSharp, phoneLandscape } from 'ionicons/icons';
 
 /* Theme variables */
 import './theme/variables.css';
@@ -46,16 +46,16 @@ const App: React.FC = () => (
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+            <IonIcon icon={phoneLandscape} />
+            <IonLabel>Devices</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab2" href="/tab2">
             <IonIcon icon={images} />
             <IonLabel>Photos</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+            <IonIcon icon={videocamSharp} />
+            <IonLabel>Videos</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
