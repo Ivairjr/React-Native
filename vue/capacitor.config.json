@@ -1,9 +1,9 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "photo-gallery",
+  "appName": "Vue",
   "bundledWebRuntime": false,
   "npmClient": "npm",
-  "webDir": "build",
+  "webDir": "dist",
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 0
